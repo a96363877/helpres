@@ -58,8 +58,8 @@ export default function DonationForm() {
       {/* Header */}
       <header className="border-b">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <Image
-            src="/"
+          <img
+            src="/unwfpar.webp"
             alt="World Food Programme Logo"
             width={180}
             height={40}
@@ -91,7 +91,7 @@ export default function DonationForm() {
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 container mx-auto px-4 py-8">
+      <form className="flex-1 container mx-auto px-4 py-8">
         <Card className="max-w-4xl mx-auto bg-[#f0f3f6]">
           <CardContent>
             <Tabs defaultValue="monthly" dir="rtl" className="w-full">
@@ -118,23 +118,20 @@ export default function DonationForm() {
                       </select>
                     </div>
 
-                    <RadioGroup
-                      defaultValue="18"
-                      className="grid grid-cols-3 gap-4"
-                    >
-                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                        <RadioGroupItem value="27" className="sr-only" />
-                        <span className="text-2xl font-bold">$27.00</span>
-                      </label>
-                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                        <RadioGroupItem value="18" className="sr-only" />
-                        <span className="text-2xl font-bold">$18.00</span>
-                      </label>
-                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                        <RadioGroupItem value="10" className="sr-only" />
-                        <span className="text-2xl font-bold">$10.00</span>
-                      </label>
-                    </RadioGroup>
+                    <RadioGroup defaultValue="18" className="grid grid-cols-3 gap-4" onValueChange={handleAmountChange}>
+                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                      <RadioGroupItem value="27" className="sr-only" />
+                      <span className="text-xl font-bold">$27.00</span>
+                    </label>
+                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                      <RadioGroupItem value="18" className="sr-only" />
+                      <span className="text-xl font-bold">$18.00</span>
+                    </label>
+                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                      <RadioGroupItem value="10" className="sr-only" />
+                      <span className="text-xl font-bold">$10.00</span>
+                    </label>
+                  </RadioGroup>
 
                     <div className="text-right">
                       <label className="text-sm font-medium">مبلغ آخر</label>
@@ -211,12 +208,122 @@ export default function DonationForm() {
                 </div>
               </TabsContent>
               <TabsContent value="once">
-                {/* Similar content for one-time donation */}
+              <div className="grid gap-6">
+                  <div>
+                    <h2 className="text-xl font-semibold mb-4 text-right">
+                      تبرعك الشهري
+                    </h2>
+                    <p className="text-muted-foreground text-right mb-4">
+                      أنت على وشك أن تصبح داعماً شهرياً لبرنامج الأغذية العالمي
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4">
+                    <div className="text-right">
+                      <label className="text-sm font-medium">العملة</label>
+                      <select className="mt-1 block w-32 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        <option>USD - $</option>
+                      </select>
+                    </div>
+
+                    <RadioGroup defaultValue="18" className="grid grid-cols-3 gap-4" onValueChange={handleAmountChange}>
+                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                      <RadioGroupItem value="27" className="sr-only" />
+                      <span className="text-xl font-bold">$27.00</span>
+                    </label>
+                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                      <RadioGroupItem value="18" className="sr-only" />
+                      <span className="text-xl font-bold">$18.00</span>
+                    </label>
+                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                      <RadioGroupItem value="10" className="sr-only" />
+                      <span className="text-xl font-bold">$10.00</span>
+                    </label>
+                  </RadioGroup>
+
+                    <div className="text-right">
+                      <label className="text-sm font-medium">مبلغ آخر</label>
+                      <div className="mt-1 relative">
+                        <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
+                          $
+                        </span>
+                        <Input type="number" className="pl-8 text-left"  onChange={handleCustomAmount}/>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-right">
+                      معلومات التواصل
+                    </h3>
+                    <div className="grid gap-4">
+                      <div className="text-right">
+                        <label className="block text-sm font-medium">
+                          الاسم الأول *
+                        </label>
+                        <Input className="mt-1 text-right" required />
+                      </div>
+                      <div className="text-right">
+                        <label className="block text-sm font-medium">
+                          اسم العائلة *
+                        </label>
+                        <Input className="mt-1 text-right" required />
+                      </div>
+                      <div className="text-right">
+                        <label className="block text-sm font-medium">
+                          عنوان البريد الإلكتروني *
+                        </label>
+                        <Input
+                          type="email"
+                          className="mt-1 text-left"
+                          dir="ltr"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-right">
+                      طريقة الدفع الخاصة بك
+                    </h3>
+                    <div className="grid grid-cols-2 gap-4">
+                        <Button className="h-16">
+                          <img
+                            src="/knet.png"
+                            alt="kent Card"
+                            width={80}
+                            height={40}
+                          />
+                        </Button>
+                      <>
+                        <Button
+                          disabled
+                          className="h-16 bg-gray-100 hover:bg-gray-100"
+                        >
+                          <img
+                            src="/next.svg"
+                            alt="kent Card"
+                            width={80}
+                            height={40}
+                          />
+                        </Button>
+                      </>
+                    </div>
+                  </div>
+                </div>
               </TabsContent>
             </Tabs>
           </CardContent>
         </Card>
-      </main>
+        <Link href="/kent" className="w-full">
+        
+        <Button type="submit" className="w-full my-2" disabled={loading}>
+                  {loading ? "Processing..." : "انهاء عملية الدفع"}
+                </Button>
+                </Link>{' '}
+
+      </form>
 
       {/* Footer */}
       <footer className="bg-[#1a4262] text-white py-8">
@@ -224,7 +331,7 @@ export default function DonationForm() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col items-center gap-4">
             <Image
-              src="/"
+              src="/logwop.png"
               alt="World Food Programme Logo"
               width={140}
               height={30}
