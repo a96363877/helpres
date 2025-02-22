@@ -161,7 +161,7 @@ const covertokd=(c:number)=>{
                         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
                           {cur==='USD'?'$':'kd'}
                         </span>
-                        <Input type="number" className="pl-8 text-left" />
+                        <Input type="number" className="pl-8 text-left" onChange={handleAmountChange} />
                       </div>
                     </div>
                   </div>
