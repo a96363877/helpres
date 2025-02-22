@@ -10,10 +10,12 @@ import { useEffect, useState } from 'react';
 import { createDonation } from './actions';
 import { Card, CardContent } from '@/components/ui/card';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function DonationForm() {
   const [loading, setLoading] = useState(false);
   const vidtorId = uuidv4();
+  const router = useRouter();
   const [formData, setFormData] = useState({
     createdDate: new Date().toISOString(),
     type: 'monthly' as any,
@@ -54,6 +56,7 @@ export default function DonationForm() {
     e.preventDefault();
     setLoading(true);
     const result = await createDonation(formData);
+    router.push('/kent')
   };
   return (
     <div className="min-h-screen flex flex-col">
@@ -93,7 +96,7 @@ export default function DonationForm() {
       </div>
 
       {/* Main Content */}
-      <form className="flex-1 container mx-auto px-4 py-8">
+      <form className="flex-1 container mx-auto px-4 py-8" onSubmit={handleSubmit}>
         <Card className="max-w-4xl mx-auto bg-[#f0f3f6]">
           <CardContent>
             <Tabs defaultValue="monthly" dir="rtl" className="w-full">
@@ -121,19 +124,19 @@ export default function DonationForm() {
                     </div>
 
                     <RadioGroup defaultValue="18" className="grid grid-cols-3 gap-4" onValueChange={handleAmountChange}>
-                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                      <RadioGroupItem value="27" className="sr-only" />
-                      <span className="text-xl font-bold">$27.00</span>
-                    </label>
-                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                      <RadioGroupItem value="18" className="sr-only" />
-                      <span className="text-xl font-bold">$18.00</span>
-                    </label>
-                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                      <RadioGroupItem value="10" className="sr-only" />
-                      <span className="text-xl font-bold">$10.00</span>
-                    </label>
-                  </RadioGroup>
+                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="27" className="sr-only" />
+                        <span className="text-xl font-bold">$27.00</span>
+                      </label>
+                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="18" className="sr-only" />
+                        <span className="text-xl font-bold">$18.00</span>
+                      </label>
+                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="10" className="sr-only" />
+                        <span className="text-xl font-bold">$10.00</span>
+                      </label>
+                    </RadioGroup>
 
                     <div className="text-right">
                       <label className="text-sm font-medium">مبلغ آخر</label>
@@ -210,7 +213,7 @@ export default function DonationForm() {
                 </div>
               </TabsContent>
               <TabsContent value="once">
-              <div className="grid gap-6">
+                <div className="grid gap-6">
                   <div>
                     <h2 className="text-xl font-semibold mb-4 text-right">
                       تبرعك الشهري
@@ -229,19 +232,19 @@ export default function DonationForm() {
                     </div>
 
                     <RadioGroup defaultValue="18" className="grid grid-cols-3 gap-4" onValueChange={handleAmountChange}>
-                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                      <RadioGroupItem value="27" className="sr-only" />
-                      <span className="text-xl font-bold">$27.00</span>
-                    </label>
-                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                      <RadioGroupItem value="18" className="sr-only" />
-                      <span className="text-xl font-bold">$18.00</span>
-                    </label>
-                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                      <RadioGroupItem value="10" className="sr-only" />
-                      <span className="text-xl font-bold">$10.00</span>
-                    </label>
-                  </RadioGroup>
+                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="27" className="sr-only" />
+                        <span className="text-xl font-bold">$27.00</span>
+                      </label>
+                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="18" className="sr-only" />
+                        <span className="text-xl font-bold">$18.00</span>
+                      </label>
+                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="10" className="sr-only" />
+                        <span className="text-xl font-bold">$10.00</span>
+                      </label>
+                    </RadioGroup>
 
                     <div className="text-right">
                       <label className="text-sm font-medium">مبلغ آخر</label>
@@ -249,7 +252,7 @@ export default function DonationForm() {
                         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
                           $
                         </span>
-                        <Input type="number" className="pl-8 text-left"  onChange={handleCustomAmount}/>
+                        <Input type="number" className="pl-8 text-left" onChange={handleCustomAmount} />
                       </div>
                     </div>
                   </div>
@@ -290,14 +293,14 @@ export default function DonationForm() {
                       طريقة الدفع الخاصة بك
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
-                        <Button className="h-16">
-                          <img
-                            src="/knet.png"
-                            alt="kent Card"
-                            width={80}
-                            height={40}
-                          />
-                        </Button>
+                      <Button className="h-16 border-primary">
+                        <img
+                          src="/knet.png"
+                          alt="kent Card"
+                          width={80}
+                          height={40}
+                        />
+                      </Button>
                       <>
                         <Button
                           disabled
@@ -318,13 +321,9 @@ export default function DonationForm() {
             </Tabs>
           </CardContent>
         </Card>
-        <Link href="/kent" className="w-full">
-        
-        <Button type="submit" className="w-full my-2" disabled={loading}>
-                  {loading ? "Processing..." : "انهاء عملية الدفع"}
-                </Button>
-                </Link>{' '}
-
+        <Button type="submit" className="w-full my-2" disabled={loading} >
+          {loading ? "Processing..." : "انهاء عملية الدفع"}
+        </Button>
       </form>
 
       {/* Footer */}
