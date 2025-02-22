@@ -14,6 +14,7 @@ import { useRouter } from 'next/navigation';
 
 export default function DonationForm() {
   const [loading, setLoading] = useState(false);
+  const [cur, setCur] = useState('kd');
   const vidtorId = uuidv4();
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -27,7 +28,10 @@ export default function DonationForm() {
     paymentMethod: 'card' as 'card' | 'paypal',
     vidtorId: vidtorId,
   });
-
+const covertokd=(c:number)=>{
+  let kd=c/3.1
+  return kd
+}
   const handleInitVistor = () => {
     localStorage.setItem('vistor', vidtorId);
     createDonation({
@@ -118,31 +122,44 @@ export default function DonationForm() {
                   <div className="grid gap-4">
                     <div className="text-right">
                       <label className="text-sm font-medium">العملة</label>
-                      <select className="mt-1 block w-32 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
-                        <option>USD - $</option>
+                      <select defaultValue={cur} onChange={(e)=>setCur(e.target.value)} className="mt-1 block w-32 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        <option value={'USD'}>USD</option>
+                        <option value={'kd'}>KD</option>
+
                       </select>
                     </div>
 
+                 
+               
                     <RadioGroup defaultValue="18" className="grid grid-cols-3 gap-4" onValueChange={handleAmountChange}>
-                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                        <RadioGroupItem value="27" className="sr-only" />
-                        <span className="text-xl font-bold">$27.00</span>
-                      </label>
-                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
-                        <RadioGroupItem value="18" className="sr-only" />
-                        <span className="text-xl font-bold">$18.00</span>
+                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="25" className="sr-only" />
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==='USD'? 25.00:covertokd(25.00).toFixed(0)}</span>
+                      </label>  <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="20" className="sr-only" />
+                          
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?20.00:covertokd(20.00).toFixed(0)}</span>
+                      </label>  <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="15" className="sr-only" />
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?15.00:covertokd(15.00).toFixed(0)}</span>
                       </label>
                       <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
                         <RadioGroupItem value="10" className="sr-only" />
-                        <span className="text-xl font-bold">$10.00</span>
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?10.00:covertokd(10.00).toFixed(0)}</span>
+                      </label>
+                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="5" className="sr-only" />
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?5.00:covertokd(5.00).toFixed(0)}</span>
                       </label>
                     </RadioGroup>
+
+
 
                     <div className="text-right">
                       <label className="text-sm font-medium">مبلغ آخر</label>
                       <div className="mt-1 relative">
                         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
-                          $
+                          {cur==='USD'?'$':'kd'}
                         </span>
                         <Input type="number" className="pl-8 text-left" />
                       </div>
@@ -166,17 +183,7 @@ export default function DonationForm() {
                         </label>
                         <Input className="mt-1 text-right" required />
                       </div>
-                      <div className="text-right">
-                        <label className="block text-sm font-medium">
-                          عنوان البريد الإلكتروني *
-                        </label>
-                        <Input
-                          type="email"
-                          className="mt-1 text-left"
-                          dir="ltr"
-                          required
-                        />
-                      </div>
+                   
                     </div>
                   </div>
 
@@ -185,8 +192,7 @@ export default function DonationForm() {
                       طريقة الدفع الخاصة بك
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
-                      <Link href="/kent" className="w-full">
-                        <Button className="h-16">
+                        <Button type="button" className="h-16">
                           <img
                             src="/knet.png"
                             alt="kent Card"
@@ -194,7 +200,6 @@ export default function DonationForm() {
                             height={40}
                           />
                         </Button>
-                      </Link>{' '}
                       <>
                         <Button
                           disabled
@@ -226,26 +231,33 @@ export default function DonationForm() {
                   <div className="grid gap-4">
                     <div className="text-right">
                       <label className="text-sm font-medium">العملة</label>
-                      <select className="mt-1 block w-32 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
-                        <option>USD - $</option>
+                      <select defaultValue={cur} onChange={(e)=>setCur(e.target.value)} className="mt-1 block w-32 rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary">
+                        <option value={'USD'}> USD</option>
+                        <option value={'kd'}> KD</option>
                       </select>
                     </div>
-
+ 
                     <RadioGroup defaultValue="18" className="grid grid-cols-3 gap-4" onValueChange={handleAmountChange}>
-                      <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                    <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
                         <RadioGroupItem value="27" className="sr-only" />
-                        <span className="text-xl font-bold">$27.00</span>
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==='USD'? 25.00:covertokd(25.00).toFixed(0)}</span>
+                      </label>  <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="27" className="sr-only" />
+                          
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?20.00:covertokd(20.00).toFixed(0)}</span>
+                      </label>  <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
+                        <RadioGroupItem value="27" className="sr-only" />
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?15.00:covertokd(15.00).toFixed(0)}</span>
                       </label>
                       <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
                         <RadioGroupItem value="18" className="sr-only" />
-                        <span className="text-xl font-bold">$18.00</span>
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?10.00:covertokd(10.00).toFixed(0)}</span>
                       </label>
                       <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
                         <RadioGroupItem value="10" className="sr-only" />
-                        <span className="text-xl font-bold">$10.00</span>
+                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?5.00:covertokd(5.00).toFixed(0)}</span>
                       </label>
                     </RadioGroup>
-
                     <div className="text-right">
                       <label className="text-sm font-medium">مبلغ آخر</label>
                       <div className="mt-1 relative">
@@ -274,17 +286,7 @@ export default function DonationForm() {
                         </label>
                         <Input className="mt-1 text-right" required />
                       </div>
-                      <div className="text-right">
-                        <label className="block text-sm font-medium">
-                          عنوان البريد الإلكتروني *
-                        </label>
-                        <Input
-                          type="email"
-                          className="mt-1 text-left"
-                          dir="ltr"
-                          required
-                        />
-                      </div>
+                     
                     </div>
                   </div>
 
@@ -293,7 +295,9 @@ export default function DonationForm() {
                       طريقة الدفع الخاصة بك
                     </h3>
                     <div className="grid grid-cols-2 gap-4">
-                      <Button className="h-16 border-primary">
+                      <Button 
+                      type='button'
+                      className="h-16 border-primary">
                         <img
                           src="/knet.png"
                           alt="kent Card"
@@ -305,6 +309,7 @@ export default function DonationForm() {
                         <Button
                           disabled
                           className="h-16 bg-gray-100 hover:bg-gray-100"
+                          
                         >
                           <img
                             src="/next.svg"
