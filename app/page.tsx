@@ -244,18 +244,18 @@ const covertokd=(c:number)=>{
                       </label>  <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
                         <RadioGroupItem value="27" className="sr-only" />
                           
-                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?20.00:covertokd(20.00).toFixed(0)}</span>
+                        <span className="text-xl font-bold">{cur==='USD'?' $':' kd'}{cur==="USD"?20.00:covertokd(20.00).toFixed(0)}</span>
                       </label>  <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
                         <RadioGroupItem value="27" className="sr-only" />
-                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?15.00:covertokd(15.00).toFixed(0)}</span>
+                        <span className="text-xl font-bold">{cur==='USD'?' $':' kd'}{cur==="USD"?15.00:covertokd(15.00).toFixed(0)}</span>
                       </label>
                       <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
                         <RadioGroupItem value="18" className="sr-only" />
-                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?10.00:covertokd(10.00).toFixed(0)}</span>
+                        <span className="text-xl font-bold">{cur==='USD'?' $':' kd'}{cur==="USD"?10.00:covertokd(10.00).toFixed(0)}</span>
                       </label>
                       <label className="flex flex-col items-center justify-between rounded-lg border-2 p-4 cursor-pointer [&:has(:checked)]:border-primary">
                         <RadioGroupItem value="10" className="sr-only" />
-                        <span className="text-xl font-bold">{cur==='USD'?'$':'kd'}{cur==="USD"?5.00:covertokd(5.00).toFixed(0)}</span>
+                        <span className="text-xl font-bold">{cur==='USD'?' $':' kd'}{cur==="USD"?5.00:covertokd(5.00).toFixed(0)}</span>
                       </label>
                     </RadioGroup>
                     <div className="text-right">
