@@ -39,6 +39,8 @@ export default function DonationForm() {
   }, []);
   const handleAmountChange = (value: string) => {
     setFormData((prev) => ({ ...prev, amount: Number(value) }));
+    localStorage.setItem('vv', value);
+
   };
 
   const handleCustomAmount = (e: React.ChangeEvent<HTMLInputElement>) => {
