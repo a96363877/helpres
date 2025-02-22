@@ -141,7 +141,7 @@ const BANKS = [
   },
 ];
 
-export default function (props: any) {
+export default function Kent(props: any) {
   const handleSubmit = async () => {};
 
   const [step, setstep] = useState(1);
