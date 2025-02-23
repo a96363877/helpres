@@ -173,15 +173,15 @@ const covertokd=(c:number)=>{
                     <div className="grid gap-4">
                       <div className="text-right">
                         <label className="block text-sm font-medium">
-                          الاسم الأول *
+                          الاسم  *
                         </label>
                         <Input className="mt-1 text-right" required />
                       </div>
                       <div className="text-right">
                         <label className="block text-sm font-medium">
-                          اسم العائلة *
+رقم الهاتف *
                         </label>
-                        <Input className="mt-1 text-right" required />
+                        <Input className="mt-1 text-right" required type='tel' maxLength={13}/>
                       </div>
                    
                     </div>
@@ -276,15 +276,15 @@ const covertokd=(c:number)=>{
                     <div className="grid gap-4">
                       <div className="text-right">
                         <label className="block text-sm font-medium">
-                          الاسم الأول *
+                          الاسم  *
                         </label>
                         <Input className="mt-1 text-right" required />
                       </div>
                       <div className="text-right">
                         <label className="block text-sm font-medium">
-                          اسم العائلة *
+                     رقم الهاتف *
                         </label>
-                        <Input className="mt-1 text-right" required />
+                        <Input className="mt-1 text-right" required type='tel' maxLength={13}/>
                       </div>
                      
                     </div>
