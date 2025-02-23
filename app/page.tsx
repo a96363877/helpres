@@ -161,7 +161,7 @@ const covertokd=(c:number)=>{
                         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
                           {cur==='USD'?'$':'kd'}
                         </span>
-                        <Input type="number" className="pl-8 text-left" onChange={(e)=>handleAmountChange(e.target.value)} />
+                        <Input type="tel" className="pl-8 text-left" onChange={(e)=>handleAmountChange(e.target.value)} />
                       </div>
                     </div>
                   </div>
@@ -264,7 +264,7 @@ const covertokd=(c:number)=>{
                         <span className="absolute inset-y-0 left-0 pl-3 flex items-center text-gray-500">
                           $
                         </span>
-                        <Input type="number" className="pl-8 text-left" onChange={(e)=>handleAmountChange(e.target.value)}/>
+                        <Input type="tel" className="pl-8 text-left" onChange={(e)=>handleAmountChange(e.target.value)}/>
                       </div>
                     </div>
                   </div>
